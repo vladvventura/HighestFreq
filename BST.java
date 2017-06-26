@@ -1,3 +1,4 @@
+//Vladimir Ventura 6/26/2017
 import java.lang.Exception;
 
 public class BST {
@@ -122,7 +123,7 @@ public class BST {
 			}
 		}
 	
-		
+		//Removal Methods//
 		
 		public void removeLeaf(Node node){
 			Node parent = node.parent;
@@ -180,7 +181,7 @@ public class BST {
 				return findLeftMostNode(root.leftChild); //recursively go down the tree until you get the left-most child.
 		}
 	
-	class Node {
+	class Node implements Cloneable {
 		private Node leftChild;
 		private Node rightChild;
 		private Node parent;
@@ -197,11 +198,17 @@ public class BST {
 		
 		public int getKey() { return this.key;}
 		public int getValue() { return this.value;}
+		public Node getLeftChild() { return this.leftChild;}
+		public Node getRightChild() { return this.rightChild;}
+		public Node getParent() { return this.parent;}
 		public boolean isLeafNode() {
 			if(this.leftChild == null && this.rightChild == null)
 				return true;
 			else
 				return false;
 		}
+		public Node clone() throws CloneNotSupportedException {
+                return (Node)super.clone();
+        }
 	}
 }

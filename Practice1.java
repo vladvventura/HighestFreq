@@ -1,3 +1,5 @@
+//Vladimir Ventura 6/26/2017
+
 import java.util.Arrays;
 import java.util.Scanner;
 import java.io.File;
@@ -6,7 +8,7 @@ import java.util.ArrayList;
 public class Practice1{
 	
 	public static void main(String[] args) throws Exception{
-		BST justaprank = new BST(8,0);
+		/*BST justaprank = new BST(8,0);
 		System.out.println("10");
 		justaprank.add(7,0);
 		System.out.println("1");
@@ -32,8 +34,8 @@ public class Practice1{
 		
 		
 		justaprank.getValues(justaprank.getRoot());
-		//works so far.
-		System.out.println("New practice: \n\n");
+		*///works so far.
+		System.out.println("Running Frequency Algorithm: \n\n");
 		findMostFrequestInteger("input.txt");
 		
 	}
@@ -50,13 +52,22 @@ public class Practice1{
 			}
 			System.out.println("Finding Most Frequest Integer in array: " + al.toString());
 			/*methods to finding most freq integer:
-			1) Dictionary. Integer as key, frequency as count. Can easily be implemented with a BST.
+			1) Dictionary to count and store values. Integer as key, frequency as count. Can easily be implemented with a BST.
 			*/
-			BST frequency = new BST();
+			System.out.println("As a Dictionary using BST implementation:");
+			BST dictfrequency = new BST();
 			for (Integer k : al) {
-				frequency.addWithValues(k, 1);
+				dictfrequency.addWithValues(k, 1);
 			}
-			frequency.getValues(frequency.getRoot());
+			dictfrequency.getValues(dictfrequency.getRoot());
+			//2) either linear-sort using frequency values, or create a max-PQ and removeMax(); 
+			//PQ is more algorithmically intensive, so let's do that.
+			System.out.println("Building Heap from BST....");
+			PQ freq = new PQ(dictfrequency);
+			System.out.println("Heap complete. Highest frequency numnber is: " + freq.peek().getKey() + " with occurence of: " +
+			freq.peek().getValue());
+			
+			
 			
 		} catch (FileNotFoundException e) { System.out.println(e.toString());}
 	}
